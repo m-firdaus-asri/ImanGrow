@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ImanGrow.MainPage"
+    BackgroundColor="#2C3930">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <!-- =================== DATE =================== -->
+            <Label x:Name="TodayDateLabel"
+                   Text="--"
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="White"
+                   Margin="0,5,0,10"/>
+
+
+            <!-- ============ STREAK + NEXT PRAYER ============ -->
+            <HorizontalStackLayout Spacing="15" HorizontalOptions="Center">
+
+                <!-- STREAK CARD -->
+                <Frame Padding="18"
+                       WidthRequest="150"
+                       BackgroundColor="#F0F0F0"
+                       CornerRadius="18"
+                       HasShadow="True">
+                    <VerticalStackLayout Spacing="4" HorizontalOptions="Center">
+                        <Label x:Name="LongestStreakLabel"
+                               Text="0 Days"
+                               FontSize="26"
+                               FontAttributes="Bold"
+                               TextColor="#1A1A1A"/>
+
+                        <Label Text="Longest Streak"
+                               FontSize="13"
+                               TextColor="#333"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- NEXT PRAYER CARD -->
+                <Frame Padding="18"
+                       WidthRequest="150"
+                       BackgroundColor="#F0F0F0"
+                       CornerRadius="18"
+                       HasShadow="True">
+                    <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
+
+                        <Label x:Name="NextPrayerTimeLabel"
+                               Text="--:--"
+                               FontSize="30"
+                               FontAttributes="Bold"
+                               TextColor="#1A1A1A"/>
+
+                        <Label x:Name="NextPrayerNameLabel"
+                               Text="Next: --"
+                               FontSize="16"
+                               TextColor="#333"/>
+
+                        <Label x:Name="CurrentPrayerLabel"
+                               Text="Current: --"
+                               FontSize="12"
+                               TextColor="#555"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+            </HorizontalStackLayout>
+
+
+            <!-- ================ DAILY PROGRESS TITLE ================ -->
+            <Label Text="Daily Progress"
+                   FontSize="19"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   Margin="0,10,0,5"/>
+
+
+            <!-- ================= PRAYER BUTTONS ================= -->
+            <Frame BackgroundColor="#F0F0F0" Padding="20" CornerRadius="20" HasShadow="True">
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="23">
+
+                    <!-- ONE PRAYER ELEMENT TEMPLATE
+                         DO NOT REMOVE – applied to all -->
+                    <!-- SUBUH -->
+                    <VerticalStackLayout Spacing="4" HorizontalOptions="Center">
+                        <Grid WidthRequest="34" HeightRequest="34">
+                            <Ellipse Fill="White" Stroke="#1A1A1A" StrokeThickness="2"/>
+
+                            <Path x:Name="SubuhTick"
+                                  Data="M 5 15 L 12 22 L 26 6"
+                                  Stroke="#4CAF50"
+                                  StrokeThickness="4"
+                                  StrokeLineCap="Round"
+                                  StrokeLineJoin="Round"
+                                  IsVisible="False"/>
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="SubuhTapped"/>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                        <Label Text="Subuh" FontSize="12" TextColor="#1A1A1A"/>
+                    </VerticalStackLayout>
+
+                    <!-- ZOHOR -->
+                    <VerticalStackLayout Spacing="4" HorizontalOptions="Center">
+                        <Grid WidthRequest="34" HeightRequest="34">
+                            <Ellipse Fill="White" Stroke="#1A1A1A" StrokeThickness="2"/>
+                            <Path x:Name="ZohorTick"
+                                  Data="M 5 15 L 12 22 L 26 6"
+                                  Stroke="#4CAF50"
+                                  StrokeThickness="4"
+                                  IsVisible="False"/>
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ZohorTapped"/>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                        <Label Text="Zohor" FontSize="12" TextColor="#1A1A1A"/>
+                    </VerticalStackLayout>
+
+                    <!-- ASAR -->
+                    <VerticalStackLayout Spacing="4" HorizontalOptions="Center">
+                        <Grid WidthRequest="34" HeightRequest="34">
+                            <Ellipse Fill="White" Stroke="#1A1A1A" StrokeThickness="2"/>
+                            <Path x:Name="AsarTick"
+                                  Data="M 5 15 L 12 22 L 26 6"
+                                  Stroke="#4CAF50"
+                                  StrokeThickness="4"
+                                  IsVisible="False"/>
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="AsarTapped"/>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                        <Label Text="Asar" FontSize="12" TextColor="#1A1A1A"/>
+                    </VerticalStackLayout>
+
+                    <!-- MAGHRIB -->
+                    <VerticalStackLayout Spacing="2" HorizontalOptions="Center">
+                        <Grid WidthRequest="34" HeightRequest="34">
+                            <Ellipse Fill="White" Stroke="#1A1A1A" StrokeThickness="2"/>
+                            <Path x:Name="MaghribTick"
+                                  Data="M 5 15 L 12 22 L 26 6"
+                                  Stroke="#4CAF50"
+                                  StrokeThickness="4"
+                                  IsVisible="False"/>
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="MaghribTapped"/>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                        <Label Text="Maghrib" FontSize="12" TextColor="#1A1A1A"/>
+                    </VerticalStackLayout>
+
+                    <!-- ISYA -->
+                    <VerticalStackLayout Spacing="2" HorizontalOptions="Center">
+                        <Grid WidthRequest="34" HeightRequest="34">
+                            <Ellipse Fill="White" Stroke="#1A1A1A" StrokeThickness="2"/>
+                            <Path x:Name="IsyaTick"
+                                  Data="M 5 15 L 12 22 L 26 6"
+                                  Stroke="#4CAF50"
+                                  StrokeThickness="4"
+                                  IsVisible="False"/>
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="IsyaTapped"/>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                        <Label Text="Isya" FontSize="12" TextColor="#1A1A1A"/>
+                    </VerticalStackLayout>
+
+                </HorizontalStackLayout>
+            </Frame>
+
+
+            <!-- ================= QURAN RECITATION ================= -->
+            <Frame Padding="18"
+                   BackgroundColor="#F0F0F0"
+                   CornerRadius="25"
+                   HasShadow="True">
+                <VerticalStackLayout Spacing="14">
+
+                    <Grid ColumnDefinitions="Auto,*,Auto" VerticalOptions="Center">
+                        <Label Text="📖" FontSize="26"/>
+
+                        <Label Text="Quran Recitation"
+                               Grid.Column="1"
+                               FontAttributes="Bold"
+                               FontSize="18"
+                               VerticalOptions="Center"
+                               TextColor="#1A1A1A"/>
+
+                        <Grid WidthRequest="28" HeightRequest="28" Grid.Column="2">
+                            <Ellipse Fill="White" Stroke="#1A1A1A" StrokeThickness="2"/>
+                            <Path x:Name="QuranTick"
+                                  Data="M 5 15 L 12 22 L 26 6"
+                                  Stroke="#4CAF50"
+                                  StrokeThickness="4"
+                                  IsVisible="False"/>
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="QuranTapped"/>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                    </Grid>
+
+                    <Label Text="Page:" FontSize="13" TextColor="#333"/>
+                    <Entry x:Name="QuranPageEntry"
+                           Placeholder="e.g. 48"
+                           Keyboard="Numeric"
+                           BackgroundColor="White"
+                           TextColor="Black"
+                           HeightRequest="40"/>
+                </VerticalStackLayout>
+            </Frame>
+
+
+            <!-- ================= ZIKR COUNTER ================= -->
+            <Frame Padding="15"
+                   BackgroundColor="#F0F0F0"
+                   CornerRadius="40"
+                   HasShadow="True">
+                <HorizontalStackLayout Spacing="70" HorizontalOptions="Center">
+
+                    <Label Text="Zikr"
+                           FontSize="21"
+                           TextColor="#1A1A1A"/>
+
+                    <HorizontalStackLayout Spacing="22">
+
+                        <!-- MINUS BUTTON -->
+                        <Frame WidthRequest="40" HeightRequest="40"
+                               CornerRadius="20"
+                               BackgroundColor="#808080"
+                               Padding="0"
+                               HasShadow="True">
+                            <Label Text="-"
+                                   FontSize="28"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="DecreaseZikrTapped"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Frame>
+
+                        <!-- COUNT -->
+                        <Label x:Name="ZikrLabel"
+                               Text="0"
+                               FontSize="22"
+                               FontAttributes="Bold"
+                               VerticalOptions="Center"
+                               TextColor="#1A1A1A"/>
+
+                        <!-- PLUS BUTTON -->
+                        <Frame WidthRequest="40" HeightRequest="40"
+                               CornerRadius="20"
+                               BackgroundColor="#808080"
+                               Padding="0"
+                               HasShadow="True">
+                            <Label Text="+"
+                                   FontSize="28"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="IncreaseZikrTapped"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Frame>
+
+                    </HorizontalStackLayout>
+                </HorizontalStackLayout>
+            </Frame>
+
+
+            <!-- SAVE BUTTON -->
+            <Button Text="Save Progress"
+                    BackgroundColor="#4CAF50"
+                    TextColor="White"
+                    CornerRadius="28"
+                    Padding="14"
+                    FontAttributes="Bold"
+                    HeightRequest="48"
+                    Clicked="SaveAllButtonClicked"/>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

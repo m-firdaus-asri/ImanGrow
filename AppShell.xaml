@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Shell
+    x:Class="ImanGrow.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:ImanGrow"
+    FlyoutBehavior="Disabled"
+    Shell.TabBarIsVisible="True">
+
+    <TabBar>
+
+        <!-- HOME TAB -->
+        <Tab Title="Home">
+            <Tab.Icon>
+                <FileImageSource File="mainpage.png" />
+            </Tab.Icon>
+
+            <ShellContent
+                Route="home"
+                ContentTemplate="{DataTemplate pages:MainPage}"/>
+        </Tab>
+
+
+        <!-- PROGRESS TAB -->
+        <Tab Title="Progress">
+            <Tab.Icon>
+                <FileImageSource File="progress.png" />
+            </Tab.Icon>
+
+            <ShellContent
+                Route="progress"
+                ContentTemplate="{DataTemplate pages:Progress}"/>
+        </Tab>
+
+
+        <!-- MOTIVATION TAB -->
+        <Tab Title="Motivation">
+            <Tab.Icon>
+                <FileImageSource File="motivation.png" />
+            </Tab.Icon>
+
+            <ShellContent
+                Route="motivation"
+                ContentTemplate="{DataTemplate pages:Motivation}"/>
+        </Tab>
+
+
+        <!-- PROFILE TAB -->
+        <Tab Title="Profile">
+            <Tab.Icon>
+                <FileImageSource File="profile.png"/>
+            </Tab.Icon>
+
+            <ShellContent
+                Route="profile"
+                ContentTemplate="{DataTemplate pages:Profile}"/>
+        </Tab>
+
+    </TabBar>
+
+</Shell>

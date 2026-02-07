@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ImanGrow.Progress"
+    BackgroundColor="#2C3930">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="25">
+
+            <!-- ================= DATE ================= -->
+            <Label Text="{Binding TodayDate}"
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="White"/>
+
+            <!-- ================= TOP CARDS ================= -->
+            <HorizontalStackLayout Spacing="14" HorizontalOptions="Center">
+
+                <!-- Longest Streak -->
+                <Frame Padding="14"
+                       WidthRequest="150"
+                       CornerRadius="20"
+                       BackgroundColor="#F5F5F5">
+                    <VerticalStackLayout HorizontalOptions="Center" Spacing="3">
+                        <Label Text="{Binding LongestStreak}"
+                               FontSize="28"
+                               FontAttributes="Bold"
+                               TextColor="#2C3930"/>
+                        <Label Text="Longest Streak"
+                               FontSize="13"
+                               TextColor="#444"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Total Days -->
+                <Frame Padding="14"
+                       WidthRequest="150"
+                       CornerRadius="20"
+                       BackgroundColor="#F5F5F5">
+                    <VerticalStackLayout HorizontalOptions="Center" Spacing="3">
+                        <Label Text="Total Days Tracked"
+                               FontSize="13"
+                               TextColor="#444"/>
+                        <Label Text="{Binding TotalDaysTracked}"
+                               FontSize="28"
+                               FontAttributes="Bold"
+                               TextColor="#2C3930"/>
+                        <Label Text="Days"
+                               FontSize="13"
+                               TextColor="#444"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+            </HorizontalStackLayout>
+
+
+            <!-- ================================================== -->
+            <!-- ================= WEEK / MONTH TOGGLE ================= -->
+            <!-- ================================================== -->
+            <Frame BackgroundColor="#E6E6E6"
+                   CornerRadius="25"
+                   Padding="7"
+                   WidthRequest="220"
+                   HorizontalOptions="Center">
+
+                <HorizontalStackLayout Spacing="29">
+
+                    <!-- WEEK BUTTON -->
+                    <Frame Padding="10,7"
+                           CornerRadius="20"
+                           BackgroundColor="{Binding WeekSelectedColor}"
+                           HorizontalOptions="FillAndExpand"
+                           Margin="2">
+                        <Label Text="{Binding WeekLabel}"
+                               HorizontalOptions="Center"
+                               TextColor="Black">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="WeekToggleTapped"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Frame>
+
+                    <!-- MONTH BUTTON -->
+                    <Frame Padding="10,7"
+                           CornerRadius="20"
+                           BackgroundColor="{Binding MonthSelectedColor}"
+                           HorizontalOptions="FillAndExpand"
+                           Margin="2">
+                        <Label Text="{Binding MonthLabel}"
+                               HorizontalOptions="Center"
+                               TextColor="Black">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="MonthToggleTapped"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Frame>
+
+                </HorizontalStackLayout>
+            </Frame>
+
+
+            <!-- ================================================== -->
+            <!-- =========== BREAKDOWN / WEEKLY ACTIVITY TOGGLE =========== -->
+            <!-- ================================================== -->
+            <Frame BackgroundColor="#E6E6E6"
+                   CornerRadius="25"
+                   Padding="7"
+                   WidthRequest="260"
+                   HorizontalOptions="Center">
+
+                <HorizontalStackLayout Spacing="8">
+
+                    <!-- BREAKDOWN BUTTON -->
+                    <Frame Padding="10,7"
+                           CornerRadius="20"
+                           BackgroundColor="{Binding BreakdownSelectedColor}"
+                           HorizontalOptions="FillAndExpand"
+                           Margin="2">
+                        <Label Text="  Breakdown  "
+                               HorizontalOptions="Center"
+                               TextColor="Black">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnBreakdownTapped"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Frame>
+
+                    <!-- WEEKLY ACTIVITY BUTTON -->
+                    <Frame Padding="10,7"
+                           CornerRadius="20"
+                           BackgroundColor="{Binding WeeklyActivitySelectedColor}"
+                           HorizontalOptions="FillAndExpand"
+                           Margin="2">
+                        <Label Text="Weekly Activity"
+                               HorizontalOptions="Center"
+                               TextColor="Black">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnWeeklyActivityTapped"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Frame>
+
+                </HorizontalStackLayout>
+            </Frame>
+
+
+            <!-- ================================================== -->
+            <!-- ================= COMPLETION CIRCLE ================= -->
+            <!-- ================================================== -->
+            <Grid ColumnDefinitions="Auto,Auto"
+                  HorizontalOptions="Center"
+                  IsVisible="{Binding IsBreakdownMode}">
+
+                <!-- WEEK CIRCLE -->
+                <Grid WidthRequest="90" HeightRequest="90"
+                      IsVisible="{Binding IsWeekMode}">
+                    <Ellipse Stroke="#4CAF50" StrokeThickness="10" Fill="White"/>
+                    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                        <Label Text="{Binding WeekOverallPercent, StringFormat='{}{0}%'}"
+                               FontSize="20" FontAttributes="Bold" TextColor="#2C3930"/>
+                        <Label Text="     week" FontSize="11" TextColor="#2C3930"/>
+                        <Label Text="completion" FontSize="11" TextColor="#2C3930"/>
+                    </VerticalStackLayout>
+                </Grid>
+
+                <!-- MONTH CIRCLE -->
+                <Grid WidthRequest="90" HeightRequest="90"
+                      IsVisible="{Binding IsMonthMode}">
+                    <Ellipse Stroke="#4CAF50" StrokeThickness="10" Fill="White"/>
+                    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                        <Label Text="{Binding MonthOverallPercent, StringFormat='{}{0}%'}"
+                               FontSize="20" FontAttributes="Bold" TextColor="#2C3930"/>
+                        <Label Text="    month" FontSize="11" TextColor="#2C3930"/>
+                        <Label Text="completion" FontSize="11" TextColor="#2C3930"/>
+                    </VerticalStackLayout>
+                </Grid>
+            </Grid>
+
+
+            <!-- ================================================== -->
+            <!-- ================= ACTIVITY BARS ================= -->
+            <!-- ================================================== -->
+
+            <CollectionView ItemsSource="{Binding ActivityProgress}"
+                            IsVisible="{Binding IsBreakdownMode}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout Spacing="5">
+
+                            <Grid ColumnDefinitions="*,Auto">
+                                <Label Text="{Binding Name}"
+                                       FontSize="15"
+                                       TextColor="White"/>
+                                <Label Text="{Binding PercentText}"
+                                       FontSize="15"
+                                       TextColor="White"
+                                       Grid.Column="1"/>
+                            </Grid>
+
+                            <ProgressBar Progress="{Binding Fraction}"
+                                         HeightRequest="10"
+                                         BackgroundColor="#3A4A42"
+                                         ProgressColor="#4CAF50"/>
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+            <!-- ================================================== -->
+            <!-- ================= WEEKLY HISTORY ================= -->
+            <!-- ================================================== -->
+
+            <Label Text="Weekly History"
+                   FontAttributes="Bold"
+                   FontSize="18"
+                   TextColor="White"
+                   Margin="0,20,0,5"
+                   HorizontalOptions="Center"
+                   IsVisible="{Binding IsWeeklyActivityMode}"/>
+
+            <Frame BackgroundColor="#E6E6E6"
+                   CornerRadius="20"
+                   Padding="15"
+                   IsVisible="{Binding IsWeeklyActivityMode}">
+
+                <VerticalStackLayout Spacing="14">
+
+                    <!-- WEEK NAVIGATION -->
+                    <Grid ColumnDefinitions="Auto,*,Auto">
+
+                        <Label Text="← Previous Week"
+                               TextColor="Black"
+                               FontSize="14"
+                               Grid.Column="0">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnPreviousWeekTapped"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+
+                        <Label x:Name="SelectedWeekLabel"
+                               Text="Week --"
+                               HorizontalOptions="Center"
+                               TextColor="Black"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               Grid.Column="1"/>
+
+                        <Label Text="Next Week →"
+                               TextColor="Black"
+                               FontSize="14"
+                               Grid.Column="2">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnNextWeekTapped"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+
+                    </Grid>
+
+                    <!-- WEEK DETAILS -->
+                    <VerticalStackLayout x:Name="WeekHistoryContainer"
+                                         Spacing="15"/>
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

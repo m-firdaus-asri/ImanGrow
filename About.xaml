@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ImanGrow.About"
+             Title="About"
+             BackgroundColor="#2C3930">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="18">
+
+            <!-- Title -->
+            <Label Text="About ImanGrow"
+                   FontAttributes="Bold"
+                   FontSize="24"
+                   HorizontalOptions="Center"
+                   TextColor="White"/>
+
+            <!-- Description -->
+            <Label Text="ImanGrow is a personal Islamic habit tracker designed to help Muslims build consistency in their daily ibadah. It allows users to track their prayer performance, Quran recitation, and zikr while providing motivational insights and weekly reports to encourage continuous spiritual growth."
+                   FontSize="16"
+                   TextColor="White"
+                   LineBreakMode="WordWrap"/>
+
+            
+
+            <!-- Developer Section -->
+            <Label Text="Developer"
+                   FontAttributes="Bold"
+                   FontSize="18"
+                   Margin="0,15,0,0"
+                   TextColor="White"/>
+
+            <Label Text="Muhammad Firdaus"
+                   FontSize="16"
+                   TextColor="White"/>
+
+            <!-- Version -->
+            <Label Text="Version 1.0"
+                   HorizontalOptions="Center"
+                   FontSize="14"
+                   TextColor="Gray"
+                   Margin="0,20,0,0"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

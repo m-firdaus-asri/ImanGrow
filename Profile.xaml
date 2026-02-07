@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ImanGrow.Profile"
+             Title="Profile"
+             BackgroundColor="#2C3930">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="25">
+
+            <!-- Profile Image -->
+            <Frame WidthRequest="150"
+                   HeightRequest="150"
+                   CornerRadius="75"
+                   BackgroundColor="#DDDDDD"
+                   HorizontalOptions="Center"
+                   Padding="0">
+
+                <Grid>
+                    <Image x:Name="ProfileImage"
+                           Source="profile_icon.png"
+                           Aspect="AspectFill"/>
+
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnChangePhotoTapped"/>
+                    </Grid.GestureRecognizers>
+                </Grid>
+
+            </Frame>
+
+            <!-- Name -->
+            <Entry Placeholder="Name"
+                   Text="{Binding Name}"
+                   FontSize="16"/>
+
+            <!-- Email -->
+            <Entry Placeholder="Email"
+                   Text="{Binding Email}"
+                   Keyboard="Email"
+                   FontSize="16"/>
+
+            <!-- About Page Button -->
+            <Button Text="About"
+                    FontSize="16"
+                    BackgroundColor="#3F51B5"
+                    TextColor="White"
+                    CornerRadius="20"
+                    Clicked="OnAboutTapped"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

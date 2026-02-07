@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ImanGrow.Motivation"
+             BackgroundColor="#2C3930"
+             Title="Motivation">
+
+    <ContentPage.Resources>
+        <Color x:Key="CardGray">#E6E6E6</Color>
+        <Color x:Key="TextDark">#000000</Color>
+        <Color x:Key="NavGray">#3F4F44</Color>
+        <Color x:Key="BrandGreen">forestgreen</Color>
+
+        <Style TargetType="Frame" x:Key="Card">
+            <Setter Property="BackgroundColor" Value="{StaticResource CardGray}"/>
+            <Setter Property="CornerRadius" Value="18"/>
+            <Setter Property="HasShadow" Value="False"/>
+            <Setter Property="Padding" Value="16"/>
+            <Setter Property="Margin" Value="0,8"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <!-- Root layout -->
+    <Grid RowDefinitions="*,Auto">
+
+        <!-- Scrollable Content -->
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Padding="20,40" Spacing="18">
+
+                <!-- Prayer Time Section -->
+                <Frame Style="{StaticResource Card}">
+                    <VerticalStackLayout Spacing="8" HorizontalOptions="Center">
+                        <Label Text="Prayer Time"
+                               FontAttributes="Bold"
+                               FontSize="16"
+                               TextColor="{StaticResource TextDark}"
+                               HorizontalOptions="Center"/>
+
+                        <Grid ColumnDefinitions="*,*,*,*,*" RowDefinitions="Auto,Auto" ColumnSpacing="8">
+                            <Label x:Name="SubuhLabel"   Grid.Column="0" Text="--:--" FontSize="14" TextColor="{StaticResource TextDark}" HorizontalOptions="Center"/>
+                            <Label x:Name="ZohorLabel"   Grid.Column="1" Text="--:--" FontSize="14" TextColor="{StaticResource TextDark}" HorizontalOptions="Center"/>
+                            <Label x:Name="AsarLabel"    Grid.Column="2" Text="--:--" FontSize="14" TextColor="{StaticResource TextDark}" HorizontalOptions="Center"/>
+                            <Label x:Name="MaghribLabel" Grid.Column="3" Text="--:--" FontSize="14" TextColor="{StaticResource TextDark}" HorizontalOptions="Center"/>
+                            <Label x:Name="IsyaLabel"    Grid.Column="4" Text="--:--" FontSize="14" TextColor="{StaticResource TextDark}" HorizontalOptions="Center"/>
+
+                            <Label Grid.Column="0" Grid.Row="1" Text="Subuh"   FontSize="12" TextColor="{StaticResource TextDark}" HorizontalOptions="Center"/>
+                            <Label Grid.Column="1" Grid.Row="1" Text="Zohor"   FontSize="12" TextColor="{StaticResource TextDark}" HorizontalOptions="Center"/>
+                            <Label Grid.Column="2" Grid.Row="1" Text="Asar"    FontSize="12" TextColor="{StaticResource TextDark}" HorizontalOptions="Center"/>
+                            <Label Grid.Column="3" Grid.Row="1" Text="Maghrib" FontSize="12" TextColor="{StaticResource TextDark}" HorizontalOptions="Center"/>
+                            <Label Grid.Column="4" Grid.Row="1" Text="Isya’"   FontSize="12" TextColor="{StaticResource TextDark}" HorizontalOptions="Center"/>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Frame>
+
+
+                <!-- Motivation -->
+                <Label Text="Motivation" FontAttributes="Bold" FontSize="16" TextColor="white" HorizontalOptions="Center"/>
+
+                <Frame Style="{StaticResource Card}" HeightRequest="300">
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+                        <Image x:Name="MotivationImage"
+                               WidthRequest="200"
+                               HeightRequest="200"
+                               Aspect="AspectFill"
+                               IsVisible="False"/>
+                        <Label x:Name="MotivationQuote"
+                               FontSize="14"
+                               TextColor="{StaticResource TextDark}"
+                               Text="Stay strong and keep believing!"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"
+                               WidthRequest="250"
+                               LineBreakMode="WordWrap"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+
+                <!-- Insight -->
+                <Label Text="Insight"
+                       FontAttributes="Bold"
+                       FontSize="16"
+                       TextColor="white"
+                       HorizontalOptions="Center"/>
+
+                <Frame Style="{StaticResource Card}">
+                    <Label Text="{Binding InsightMessage}"
+                           FontSize="14"
+                           TextColor="{StaticResource TextDark}"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                </Frame>
+
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+    </Grid>
+</ContentPage>
